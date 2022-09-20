@@ -13,16 +13,16 @@ jobs:
     - run: docker run -e CI=true amasaabu/react-test npm test
     
     - name: build for production-client
-      run: docker build -t amasaabu/multi-client ./client
+      run: docker build -t amasaabubakar/multi-client ./client
 
     - name: build for production-nginx
-      run: docker build -t amasaabu/multi-nginx ./nginx
+      run: docker build -t amasaabubakar/multi-nginx ./nginx
 
     - name: build for production-server
-      run: docker build -t amasaabu/multi-server ./server
+      run: docker build -t amasaabubakar/multi-server ./server
 
     - name: build for production-worker
-      run: docker build -t amasaabu/multi-worker ./worker
+      run: docker build -t amasaabubakar/multi-worker ./worker
 
     - name: Generate deploymentt package
       run: zip -r deploy.zip . -x '*.git'
