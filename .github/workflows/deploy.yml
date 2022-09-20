@@ -20,21 +20,35 @@ jobs:
 
     - name: build for production-server
       run: docker build -t amasaabu/multi-server ./server
-      
+
     - name: build for production-worker
       run: docker build -t amasaabu/multi-worker ./worker
 
     - name: Generate deploymentt package
       run: zip -r deploy.zip . -x '*.git'
 
-    - name: Deploy to EB
-      uses: einaregilsson/beanstalk-deploy@v18
-      with:
-        aws_access_key: ${{secrets.AWS_ACCESS_KEY}}
-        aws_secret_key: ${{secrets.AWS_SECRETE_ACCESS_KEY}}
-        application_name: Docker
-        environment_name: Docker-env-1
-        existing_bucket_name: elasticbeanstalk-us-east-1-451613728407
-        region: us-east-1
-        version_label: ${{ github.sha }}
-        deployment_package: deploy.zip
+    - name: Login to dockerhub
+    - run: echo "${{ DOCKER_PASSWORD }}" | docker login -u "${{ DOCKER_ID }}" --password-stdin
+
+    - name: push to docker hub client
+      run: docker push amasaabubakar/multi-client
+
+    - name: push to docker hub nginx
+      run: docker push amasaabubakar/multi-nginx
+
+     - name: push to docker hub server
+       run: docker push amasaabubakar/multi-server
+
+     - name: push to docker hub worker
+       run: docker push amasaabubakar/multi-worker
+    # - name: Deploy to EB
+    #   uses: einaregilsson/beanstalk-deploy@v18
+    #   with:
+    #     aws_access_key: ${{secrets.AWS_ACCESS_KEY}}
+    #     aws_secret_key: ${{secrets.AWS_SECRETE_ACCESS_KEY}}
+    #     application_name: Docker
+    #     environment_name: Docker-env-1
+    #     existing_bucket_name: elasticbeanstalk-us-east-1-451613728407
+    #     region: us-east-1
+    #     version_label: ${{ github.sha }}
+    #     deployment_package: deploy.zip
