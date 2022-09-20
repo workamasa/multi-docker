@@ -24,23 +24,23 @@ jobs:
     - name: build for production-worker
       run: docker build -t amasaabu/multi-worker ./worker
 
-    - name: Generate deploymentt package
-      run: zip -r deploy.zip . -x '*.git'
+    # - name: Generate deploymentt package
+    #   run: zip -r deploy.zip . -x '*.git'
 
-    - name: Login to dockerhub
-    - run: echo "${{ DOCKER_PASSWORD }}" | docker login -u "${{ DOCKER_ID }}" --password-stdin
+    # - name: Login to dockerhub
+    # - run: echo "${{ DOCKER_PASSWORD }}" | docker login -u "${{ DOCKER_ID }}" --password-stdin
 
-    - name: push to docker hub client
-      run: docker push amasaabubakar/multi-client
+    # - name: push to docker hub client
+    #   run: docker push amasaabubakar/multi-client
 
-    - name: push to docker hub nginx
-      run: docker push amasaabubakar/multi-nginx
+    # - name: push to docker hub nginx
+    #   run: docker push amasaabubakar/multi-nginx
 
-    - name: push to docker hub server
-      run: docker push amasaabubakar/multi-server
+    # - name: push to docker hub server
+    #   run: docker push amasaabubakar/multi-server
 
-    - name: push to docker hub worker
-      run: docker push amasaabubakar/multi-worker
+    # - name: push to docker hub worker
+    #   run: docker push amasaabubakar/multi-worker
     # - name: Deploy to EB
     #   uses: einaregilsson/beanstalk-deploy@v18
     #   with:
