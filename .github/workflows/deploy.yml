@@ -36,11 +36,11 @@ jobs:
     - name: push to docker hub nginx
       run: docker push amasaabubakar/multi-nginx
 
-     - name: push to docker hub server
-       run: docker push amasaabubakar/multi-server
+    - name: push to docker hub server
+      run: docker push amasaabubakar/multi-server
 
-     - name: push to docker hub worker
-       run: docker push amasaabubakar/multi-worker
+    - name: push to docker hub worker
+      run: docker push amasaabubakar/multi-worker
     # - name: Deploy to EB
     #   uses: einaregilsson/beanstalk-deploy@v18
     #   with:
