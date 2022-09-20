@@ -28,7 +28,7 @@ jobs:
       run: zip -r deploy.zip . -x '*.git'
 
     - name: Login to dockerhub
-      run: echo "${{ DOCKER_PASSWORD }}" | docker login -u "${{ DOCKER_ID }}" --password-stdin
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_ID }}" --password-stdin
 
     - name: push to docker hub client
       run: docker push amasaabubakar/multi-client
