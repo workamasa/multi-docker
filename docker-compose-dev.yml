@@ -30,7 +30,7 @@ services:
       - PGPORT=5432
   client:
     build: 
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       context: ./client
     environment:
       - WDS_SOCKET_PORT=0
@@ -40,7 +40,7 @@ services:
     #   - ./client:/app
   worker:
     build: 
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       context: ./worker
     volumes:
       - /app/node_modules
