@@ -45,7 +45,7 @@ jobs:
     - name: Deploy to Amazon ECS
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: docker.compose.yml
+        task-definition: ./docker.compose.yml
         cluster: awseb-Multidocker-env-tq3rpmemn8
         wait-for-service-stability: true
 
