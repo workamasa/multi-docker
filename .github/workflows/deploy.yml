@@ -25,8 +25,8 @@ jobs:
       run: docker build -t amasaabubakar/multi-worker ./worker
       
     - name: build docker instructions
-      run: docker build -t amasaabubakar/instructions
-      
+      run: docker build -t amasaabubakar/instructions -f Dockerfile .
+
     - name: Generate deploymentt package
       run: zip -r deploy.zip . -x '*.git'
 
