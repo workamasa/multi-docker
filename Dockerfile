@@ -1,2 +1,2 @@
 FROM alpine:latest
-COPY ./docker-compose ./
+COPY ./docker-compose.yml ./
