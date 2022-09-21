@@ -42,13 +42,6 @@ jobs:
     - name: push to docker hub worker
       run: docker push amasaabubakar/multi-worker
 
-    - name: Deploy to Amazon ECS
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ./docker.compose.yml
-        cluster: awseb-Multidocker-env-tq3rpmemn8
-        wait-for-service-stability: true
-
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v18
