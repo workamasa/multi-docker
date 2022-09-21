@@ -9,6 +9,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     # - run: docker login -u ${{secrets.DOCKER_USERNAME}} - p ${{secrets.DOCKER_PASSWORD}}
+    - name: build docker instructions
+      run: docker build -t amasaabubakar/instructions -f Dockerfile .
+
+    - name: Generate deploymentt package
+      run: zip -r deploy.zip . -x '*.git'
+
+
+      
     - run: docker build -t amasaabu/react-test -f ./client/Dockerfile.dev ./client
     - run: docker run -e CI=true amasaabu/react-test npm test
     
@@ -24,11 +32,7 @@ jobs:
     - name: build for production-worker
       run: docker build -t amasaabubakar/multi-worker ./worker
       
-    - name: build docker instructions
-      run: docker build -t amasaabubakar/instructions -f Dockerfile .
-
-    - name: Generate deploymentt package
-      run: zip -r deploy.zip . -x '*.git'
+    
 
     - name: Login to dockerhub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_ID }}" --password-stdin
