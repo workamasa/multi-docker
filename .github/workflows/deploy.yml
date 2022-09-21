@@ -23,7 +23,10 @@ jobs:
 
     - name: build for production-worker
       run: docker build -t amasaabubakar/multi-worker ./worker
-
+      
+    - name: build docker instructions
+      run: docker build -t amasaabubakar/instructions
+      
     - name: Generate deploymentt package
       run: zip -r deploy.zip . -x '*.git'
 
@@ -42,7 +45,6 @@ jobs:
     - name: push to docker hub worker
       run: docker push amasaabubakar/multi-worker
 
-
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v18
       with:
@@ -53,4 +55,4 @@ jobs:
         existing_bucket_name: elasticbeanstalk-us-east-1-451613728407
         region: us-east-1
         version_label: ${{ github.sha }}
-        # deployment_package: deploy.zip
+        deployment_package: deploy.zip
