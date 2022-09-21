@@ -60,4 +60,6 @@ jobs:
         existing_bucket_name: elasticbeanstalk-us-east-1-451613728407
         region: us-east-1
         version_label: ${{ github.sha }}
-        deployment_package: deploy.zip
+        deployment_package: 
+          - deploy.zip
+          - ./docker-compose.yml
